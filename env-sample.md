@@ -1,0 +1,8 @@
+
+# Port number for server goes here
+
+PORT=
+
+# URL connection string for postgresql goes here
+
+DATABASE_URL=
