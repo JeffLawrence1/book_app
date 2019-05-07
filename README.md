@@ -28,6 +28,16 @@ Estimate of time needed to complete: one hour
 
 Start time: 9:25
 
+Finish time: 10:55
+
+Actual time needed to complete: 1 hour 30 minutes
+
+Number and name of feature: #4 Error page
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 
+
 Finish time: 
 
 Actual time needed to complete: 
