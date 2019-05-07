@@ -8,27 +8,46 @@ body {
   background-color: aqua;
 } 
 
-main {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
 
-h1 {
-  text-align: center;
-  font-family: 'Muli', sans-serif;
-  font-size: 54px;
-  color: darkblue;
+@media(min-width: 200px) and (max-width: 600px) {
+  
+  h1 {
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+    font-size: 3em;
+    color: darkblue;
+  }
+  
+  h2 {
+    font-size: 2em;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+  }
+  
+  p {
+    font-size: 1em;
+  }
+  
 }
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
-p {
-  font-size: 18px;
+@media(min-width:601px){
+  h1 {
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+    font-size: 4em;
+    color: darkblue;
+  }
+  
+  h2 {
+    font-size: 3em;
+  }
+  
+  h3 {
+    font-size: 2em;
+  }
+  
+  p {
+    font-size: 1.5em;
+  }
 }
