@@ -2,11 +2,11 @@
 # Ed and Jeff
 
 
-Number and name of feature: ________________________________
+Number and name of feature: Application load
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: one hour
 
-Start time: _____
+Start time: 8:40
 
 Finish time: _____
 
