@@ -26,6 +26,13 @@ app.get('*', (request, response) => response.status(404).send('This route does n
 app.listen(PORT, () => console.log(`LISTENING TO EVERYTHING YOU DO!!!!! on port: ${PORT}`));
 
 
+// Book Constructor
+function Book(info) {
+  this.image_url = info.image_url || 'https://i.imgur.com/e1yYXUU.jpg';
+  this.title = info.title || 'No title available';
+  this.author = info.author || 'No author available';
+  this.description = info.description || 'No description available';
+}
 
 // Functions
 function newSearch(request, response){
