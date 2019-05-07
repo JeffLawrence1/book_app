@@ -29,9 +29,8 @@ app.listen(PORT, () => console.log(`LISTENING TO EVERYTHING YOU DO!!!!! on port:
 
 // Book Constructor
 function Book(info) {
-  // console.log(info.description);
+
   let image = urlCheck(info.imageLinks.thumbnail);
-  console.log(image);
   this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
   this.title = info.title || 'No title available';
   this.author = info.authors || 'No author available';
@@ -40,9 +39,7 @@ function Book(info) {
 
 const urlCheck = (data) => {
   if(data.indexOf('https') === -1){
-    console.log(data);
     let newData = data.replace('http', 'https');
-    console.log(data);
     return newData;
   }else{
     return data;
@@ -55,8 +52,7 @@ function newSearch(request, response){
 }
 
 function performSearch(request, response){
-  // console.log(request.body);
-  // console.log(request.body.search);
+
   let url = `https://www.googleapis.com/books/v1/volumes?q=+in${request.body.search[1]}:${request.body.search[0]}`;
 
   superagent.get(url)
