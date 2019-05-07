@@ -8,6 +8,16 @@
   <title>Show</title>
 </head>
 <body>
+  <h1>Show Books!</h1>
+  <ul>
+    <% searchResults.forEach( (element) => { %>
+      <li>
+          <img src=" <%= element.image_url %> " alt=" <%= element.title %> picture not available">
+          <h2> Title: <%= element.title %> </h2>
+      </li>
+   <% }) %>
+  </ul>
+  <h1></h1>
   
 </body>
 </html>
