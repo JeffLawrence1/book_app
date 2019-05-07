@@ -18,6 +18,7 @@ app.set('view engine', 'ejs');
 // Routes
 app.get('/', newSearch);
 app.post('/searches', performSearch);
+app.get('/error', errorPage);
 
 // Error Catcher
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -30,6 +31,7 @@ app.listen(PORT, () => console.log(`LISTENING TO EVERYTHING YOU DO!!!!! on port:
 function Book(info) {
   // console.log(info.description);
   let image = urlCheck(info.imageLinks.thumbnail);
+  console.log(image);
   this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
   this.title = info.title || 'No title available';
   this.author = info.authors || 'No author available';
@@ -37,8 +39,10 @@ function Book(info) {
 }
 
 const urlCheck = (data) => {
-  if(!data.slice(0, 5) === 'https'){
+  // console.log(data.slice(0, 5));
+  if(data.slice(0, 5) === 'http:'){
     data.replace(/^http:\/\//i, 'https://');
+    // console.log(data + 'inside');
     return data;
   }else{
     return data;
@@ -56,7 +60,13 @@ function performSearch(request, response){
   let url = `https://www.googleapis.com/books/v1/volumes?q=+in${request.body.search[1]}:${request.body.search[0]}`;
 
   superagent.get(url)
-    .then(apiResponse =>  apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
+    .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
     .then(books => response.render('pages/searches/show', {searchResults: books}))
-    .catch(console.error);
+    .catch(errorPage);
 }
+
+
+function errorPage(request, response){
+  response.render('pages/error');
+}
+
