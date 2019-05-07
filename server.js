@@ -51,8 +51,8 @@ function newSearch(request, response){
 }
 
 function performSearch(request, response){
-  console.log(request.body);
-  console.log(request.body.search);
+  // console.log(request.body);
+  // console.log(request.body.search);
   let url = `https://www.googleapis.com/books/v1/volumes?q=+in${request.body.search[1]}:${request.body.search[0]}`;
 
   superagent.get(url)
