@@ -2,17 +2,25 @@
 # Ed and Jeff
 
 
-Number and name of feature: Application load
+Number and name of feature: #1 Application load
 
 Estimate of time needed to complete: one hour
 
 Start time: 8:40
 
-Finish time: _____
+Finish time: 9:12
 
-Actual time needed to complete: _____
+Actual time needed to complete: 32 minutes
 
+Number and name of feature: #2 Google Books API
 
+Estimate of time needed to complete: one hour
+
+Start time: 9:15
+
+Finish time: 
+
+Actual time needed to complete: 
 
 # Project Name
 
