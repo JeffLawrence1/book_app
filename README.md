@@ -12,11 +12,21 @@ Finish time: 9:12
 
 Actual time needed to complete: 32 minutes
 
-Number and name of feature: #2 Google Books API
+Number and name of feature: #2 HTML search layout
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 9:15
+
+Finish time: 9:25
+
+Actual time needed to complete: 10 minutes
+
+Number and name of feature: #3 Browse search results
 
 Estimate of time needed to complete: one hour
 
-Start time: 9:15
+Start time: 9:25
 
 Finish time: 
 

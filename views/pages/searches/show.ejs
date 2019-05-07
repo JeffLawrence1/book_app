@@ -4,9 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="/styles/base.css">
+  <title>Show</title>
 </head>
 <body>
+  <h1>Show Books!</h1>
+  <ul>
+    <% searchResults.forEach( (element) => { %>
+      <li>
+          <img src=" <%= element.image_url %> " alt=" <%= element.title %> picture not available">
+          <h2> Title: <%= element.title %> </h2>
+            <h3> Author: <%= element.author %></h3>
+          <p> Description: <%= element.description %></p>
+      </li>
+   <% }) %>
+  </ul>
+  <h1></h1>
   
 </body>
 </html>
