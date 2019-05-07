@@ -16,7 +16,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Routes
-app.length('/', newSearch);
+app.get('/', newSearch);
 
 
 // Error Catcher
@@ -29,5 +29,5 @@ app.listen(PORT, () => console.log(`LISTENING TO EVERYTHING YOU DO!!!!! on port:
 
 // Functions
 function newSearch(request, response){
-  response.rend('pages/index');
+  response.render('pages/index');
 }
