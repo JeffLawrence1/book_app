@@ -1,10 +1,53 @@
 @import url('./reset.css');
+@import url('./layout.css');
+@import url('./modules.css');
+@import url('./icons.css');
 
-
-h1 {
-  color: red;
-}
 
 body {
   background-color: aqua;
+} 
+
+
+@media(min-width: 200px) and (max-width: 600px) {
+  
+  h1 {
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+    font-size: 3em;
+    color: darkblue;
+  }
+  
+  h2 {
+    font-size: 2em;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+  }
+  
+  p {
+    font-size: 1em;
+  }
+  
+}
+@media(min-width:601px){
+  h1 {
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+    font-size: 4em;
+    color: darkblue;
+  }
+  
+  h2 {
+    font-size: 3em;
+  }
+  
+  h3 {
+    font-size: 2em;
+  }
+  
+  p {
+    font-size: 1.5em;
+  }
 }

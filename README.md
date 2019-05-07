@@ -36,11 +36,21 @@ Number and name of feature: #4 Error page
 
 Estimate of time needed to complete: 30 minutes
 
-Start time: 
+Start time: 11:00
 
-Finish time: 
+Finish time: 11:20
 
-Actual time needed to complete: 
+Actual time needed to complete: 20 minutes
+
+Number and name of feature: #5 Css
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 11:30
+
+Finish time: 12:05
+
+Actual time needed to complete: 35 minutes
 
 # Project Name
 
