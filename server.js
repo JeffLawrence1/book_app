@@ -39,11 +39,11 @@ function Book(info) {
 }
 
 const urlCheck = (data) => {
-  // console.log(data.slice(0, 5));
-  if(data.slice(0, 5) === 'http:'){
-    data.replace(/^http:\/\//i, 'https://');
-    // console.log(data + 'inside');
-    return data;
+  if(data.indexOf('https') === -1){
+    console.log(data);
+    let newData = data.replace('http', 'https');
+    console.log(data);
+    return newData;
   }else{
     return data;
   }
