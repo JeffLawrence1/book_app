@@ -3,6 +3,7 @@
 // App Dependencies
 const express = require('express');
 const superagent = require('superagent');
+require('dotenv').config();
 const pg = require('pg');
 
 // App Setup
@@ -12,6 +13,11 @@ const PORT = process.env.PORT || 3000;
 // App Middleware
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
+
+//DataBase Setup
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
 
 // Set view engine for server side templating
 app.set('view engine', 'ejs');
@@ -38,7 +44,7 @@ function Book(info) {
   this.isbn = info.industryIdentifiers[0].identifier || 'No ISBN present';
   this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
   this.description = info.description || 'No description available';
-  //this.bookshelf = ;
+  this.bookshelf = 'SciFi';
 }
 
 const urlCheck = (data) => {
@@ -66,10 +72,12 @@ function performSearch(request, response){
 }
 
 function loadPage (request, response) {
-  const SQL = 'SELECT * FROM books;';
+  let SQL = 'SELECT * FROM books;';
+  
   
   return client.query(SQL) 
-    .then (results => response.render('pages/index', {results: results.rows}))
+    //console.log(SQL)
+    .then (results => response.render('pages/index', {results: results.rows, bookCount: results.rows.length}))
     .catch (err => errorPage(err, response));
 }
 
