@@ -3,6 +3,7 @@
 // App Dependencies
 const express = require('express');
 const superagent = require('superagent');
+const pg = require('pg');
 
 // App Setup
 const app = express();
@@ -16,8 +17,9 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Routes
-app.get('/', newSearch);
-app.post('/searches', performSearch);
+app.get('/searches/new', newSearch);
+//app.get('/searches/new', performSearch);
+app.get('/', loadPage);
 app.get('/error', errorPage);
 
 // Error Catcher
@@ -29,15 +31,14 @@ app.listen(PORT, () => console.log(`LISTENING TO EVERYTHING YOU DO!!!!! on port:
 
 // Book Constructor
 function Book(info) {
-  //console.log(info.industryIdentifiers[0].identifier);
+  //We may need this later: console.log(info.imageLinks.thumbnail);
   let image = urlCheck(info.imageLinks.thumbnail);
   this.author = info.authors || 'No author available';
   this.title = info.title || 'No title available';
   this.isbn = info.industryIdentifiers[0].identifier || 'No ISBN present';
   this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
-  
-  
   this.description = info.description || 'No description available';
+  //this.bookshelf = ;
 }
 
 const urlCheck = (data) => {
@@ -64,8 +65,15 @@ function performSearch(request, response){
     .catch(errorPage);
 }
 
+function loadPage (request, response) {
+  const SQL = 'SELECT * FROM books;';
+  
+  return client.query(SQL) 
+    .then (results => response.render('pages/index', {results: results.rows}))
+    .catch (err => errorPage(err, response));
+}
 
-function errorPage(request, response){
-  response.render('pages/error');
+function errorPage(error, response){
+  response.render('pages/error', {error: 'OH nO!'});
 }
 
