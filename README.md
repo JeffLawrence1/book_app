@@ -1,6 +1,37 @@
 # book_app
 # Ed and Jeff
 
+#Day 2
+
+Number and name of feature: #1 Adding database
+
+Estimate of time needed to complete: one hour
+
+Start time: 8:20
+
+Finish time: 11:10
+
+Actual time needed to complete: 2 hrs 50 mins
+
+Number and name of feature: #2 Add an End point to books ID
+
+Estimate of time needed to complete: 1hr
+
+Start time: 11:15
+
+Finish time: 11:55
+
+Actual time needed to complete: 40 min
+
+Number and name of feature: #3 Adding a button to selcet specific book and add to DB
+
+Estimate of time needed to complete: 2hr
+
+Start time: 12pm
+
+Finish time: 
+Actual time needed to complete: 
+#Day 1
 
 Number and name of feature: #1 Application load
 

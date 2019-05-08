@@ -3,6 +3,8 @@
 // App Dependencies
 const express = require('express');
 const superagent = require('superagent');
+require('dotenv').config();
+const pg = require('pg');
 
 // App Setup
 const app = express();
@@ -12,13 +14,20 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+//DataBase Setup
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
+
 // Set view engine for server side templating
 app.set('view engine', 'ejs');
 
 // Routes
-app.get('/', newSearch);
-app.post('/searches', performSearch);
+app.get('/searches/new', newSearch);
+//app.get('/searches/new', performSearch);
+app.get('/', loadPage);
 app.get('/error', errorPage);
+app.get('/books/:id', getBook);
 
 // Error Catcher
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -29,12 +38,14 @@ app.listen(PORT, () => console.log(`LISTENING TO EVERYTHING YOU DO!!!!! on port:
 
 // Book Constructor
 function Book(info) {
-
+  //We may need this later: console.log(info.imageLinks.thumbnail);
   let image = urlCheck(info.imageLinks.thumbnail);
-  this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
-  this.title = info.title || 'No title available';
   this.author = info.authors || 'No author available';
+  this.title = info.title || 'No title available';
+  this.isbn = info.industryIdentifiers[0].identifier || 'No ISBN present';
+  this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
   this.description = info.description || 'No description available';
+  this.bookshelf = 'SciFi';
 }
 
 const urlCheck = (data) => {
@@ -61,8 +72,29 @@ function performSearch(request, response){
     .catch(errorPage);
 }
 
+function loadPage (request, response) {
+  let SQL = 'SELECT * FROM books;';
+  
+  
+  return client.query(SQL) 
+    //console.log(SQL)
+    .then (results => response.render('pages/index', {results: results.rows, bookCount: results.rows.length}))
+    .catch (err => errorPage(err, response));
+}
 
-function errorPage(request, response){
-  response.render('pages/error');
+function getBook(request, response){
+  let SQL = `SELECT * FROM books WHERE id=$1;`;
+  //console.log(request.params);
+  let values = [request.params.id];
+
+  return client.query(SQL, values)
+    .then(result => {
+      response.render('pages/books/show', {results: result.rows});
+    })
+    .catch (err => errorPage(err, response));
+}
+
+function errorPage(error, response){
+  response.render('pages/error', {error: 'OH nO!'});
 }
 

@@ -15,8 +15,10 @@
       <li>
           <img src=" <%= element.image_url %> " alt=" <%= element.title %> picture not available">
           <h2> Title: <%= element.title %> </h2>
-            <h3> Author: <%= element.author %></h3>
+          <h3> Author: <%= element.author %></h3>
+          <h4> ISBN: <%= element.isbn %></h4>
           <p> Description: <%= element.description %></p>
+          <button type="submit">Select this book</button>
       </li>
    <% }) %>
   </ul>
