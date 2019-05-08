@@ -29,11 +29,14 @@ app.listen(PORT, () => console.log(`LISTENING TO EVERYTHING YOU DO!!!!! on port:
 
 // Book Constructor
 function Book(info) {
-
+  //console.log(info.industryIdentifiers[0].identifier);
   let image = urlCheck(info.imageLinks.thumbnail);
-  this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
-  this.title = info.title || 'No title available';
   this.author = info.authors || 'No author available';
+  this.title = info.title || 'No title available';
+  this.isbn = info.industryIdentifiers[0].identifier || 'No ISBN present';
+  this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
+  
+  
   this.description = info.description || 'No description available';
 }
 
