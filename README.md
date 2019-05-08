@@ -9,10 +9,19 @@ Estimate of time needed to complete: one hour
 
 Start time: 8:20
 
+Finish time: 11:10
+
+Actual time needed to complete: 2 hrs 50 mins
+
+Number and name of feature: #2 Add an End point to books ID
+
+Estimate of time needed to complete: 
+
+Start time: 11:15
+
 Finish time: 
 
-Actual time needed to complete:
-
+Actual time needed to complete: 
 #Day 1
 
 Number and name of feature: #1 Application load

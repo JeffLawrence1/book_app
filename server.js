@@ -27,6 +27,7 @@ app.get('/searches/new', newSearch);
 //app.get('/searches/new', performSearch);
 app.get('/', loadPage);
 app.get('/error', errorPage);
+app.get('/books/:id', getBook);
 
 // Error Catcher
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -78,6 +79,17 @@ function loadPage (request, response) {
   return client.query(SQL) 
     //console.log(SQL)
     .then (results => response.render('pages/index', {results: results.rows, bookCount: results.rows.length}))
+    .catch (err => errorPage(err, response));
+}
+
+function getBook(request, response){
+  let SQL = `SELECT * FROM books WHERE id=$1;`;
+  let values = [request.params.task_id];
+
+  return client.query(SQL, values)
+    .then(result => {
+      response.render('views/pages/books/show', {book: result.rows[0]});
+    })
     .catch (err => errorPage(err, response));
 }
 
