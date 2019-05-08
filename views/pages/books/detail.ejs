@@ -1,0 +1,14 @@
+<section class="dbContainer">
+    <ul id="dbList">
+        <% results.forEach(book => { %>
+        <li class="bookItem" data-id="<%= book.id %>">
+            <img src=" <%= book.image_url %> " alt=" <%= book.title %> picture not available">
+            <h2> Title: <%= book.title %> </h2>
+            <h3> Author: <%= book.author %></h3>
+            <h4> ISBN: <%= book.isbn %></h4>
+            <p> Description: <%= book.description %></p>
+            <a href="/books/<%= book.id%>">View Book</a>
+        </li>
+      <% }) %>
+    </ul>
+</section>

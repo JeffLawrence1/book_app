@@ -84,11 +84,12 @@ function loadPage (request, response) {
 
 function getBook(request, response){
   let SQL = `SELECT * FROM books WHERE id=$1;`;
-  let values = [request.params.task_id];
+  //console.log(request.params);
+  let values = [request.params.id];
 
   return client.query(SQL, values)
     .then(result => {
-      response.render('views/pages/books/show', {book: result.rows[0]});
+      response.render('pages/books/show', {results: result.rows});
     })
     .catch (err => errorPage(err, response));
 }

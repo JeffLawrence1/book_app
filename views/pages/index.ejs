@@ -11,19 +11,7 @@
   <main>
     <h1>Current Books in Database</h1>
     <h3>Book Count = <%=bookCount%></h3>
-    <section class="dbContainer">
-      <ul id="dbList">
-        <% results.forEach(book => { %>
-          <li class="bookItem" data-id="<%= book.id %>">
-              <img src=" <%= book.image_url %> " alt=" <%= book.title %> picture not available">
-              <h2> Title: <%= book.title %> </h2>
-              <h3> Author: <%= book.author %></h3>
-              <h4> ISBN: <%= book.isbn %></h4>
-              <p> Description: <%= book.description %></p>
-          </li>
-        <% }) %>
-      </ul>
-    </section>
+    <%- include('./books/detail') %>
   </main>
 </body>
 </html>
