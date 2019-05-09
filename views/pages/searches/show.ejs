@@ -18,10 +18,10 @@
           <h3> Author: <%= element.author %></h3>
           <h4> ISBN: <%= element.isbn %></h4>
           <p> Description: <%= element.description %></p>
-          <button type="submit">Select this book</button>
+          <button class="toggleButton" type="submit">Select this book</button>
           <section>
 
-              <form action="" method="post">
+              <form class="hiddenForm" action="" method="post">
                 <input type="hidden" name="_method" value="put">
                 <input type="text" name="title" value="<%= element.title %>" placeholder="<%= element.title %>">
                 
@@ -42,5 +42,6 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+  <script src="/js/app.js"></script>
 </body>
 </html>
