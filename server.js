@@ -5,6 +5,7 @@ const express = require('express');
 const superagent = require('superagent');
 require('dotenv').config();
 const pg = require('pg');
+const methodOverride = require('method-override');
 
 // App Setup
 const app = express();
@@ -13,6 +14,16 @@ const PORT = process.env.PORT || 3000;
 // App Middleware
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
+
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    console.log(req.body._method);
+    var method = req.body._method
+    delete req.body._method
+    return method
+  }
+}));
 
 //DataBase Setup
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -24,7 +35,8 @@ app.set('view engine', 'ejs');
 
 // Routes
 app.get('/searches/new', newSearch);
-//app.get('/searches/new', performSearch);
+app.post('/searches', performSearch);
+app.post('/book', addDB);
 app.get('/', loadPage);
 app.get('/error', errorPage);
 app.get('/books/:id', getBook);
@@ -45,7 +57,7 @@ function Book(info) {
   this.isbn = info.industryIdentifiers[0].identifier || 'No ISBN present';
   this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
   this.description = info.description || 'No description available';
-  this.bookshelf = 'SciFi';
+  this.bookshelf = 'select bookshelf';
 }
 
 const urlCheck = (data) => {
@@ -59,7 +71,7 @@ const urlCheck = (data) => {
 
 // Functions
 function newSearch(request, response){
-  response.render('pages/index');
+  response.render('pages/searches/new');
 }
 
 function performSearch(request, response){
@@ -94,6 +106,9 @@ function getBook(request, response){
     .catch (err => errorPage(err, response));
 }
 
+function addDB(request, response){
+  console.log(request);
+}
 function errorPage(error, response){
   response.render('pages/error', {error: 'OH nO!'});
 }
