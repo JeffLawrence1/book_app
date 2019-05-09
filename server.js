@@ -60,12 +60,6 @@ function Book(info) {
   this.bookshelf = 'select bookshelf';
 }
 
-// Book.prototype.save = function(){
-//   let SQL = 'INSERT INTO books(author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);';
-//   let values = Object.values(this);
-//   return client.query(SQL, values);
-// };
-
 const urlCheck = (data) => {
   if(data.indexOf('https') === -1){
     let newData = data.replace('http', 'https');
@@ -128,15 +122,3 @@ function addDB(request, response){
 function errorPage(error, response){
   response.render('pages/error', {error: 'OH nO!'});
 }
-
-
-// function Book(info) {
-//   //We may need this later: console.log(info.imageLinks.thumbnail);
-//   let image = urlCheck(info.imageLinks.thumbnail);
-//   this.author = info.authors || 'No author available';
-//   this.title = info.title || 'No title available';
-//   this.isbn = info.industryIdentifiers[0].identifier || 'No ISBN present';
-//   this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
-//   this.description = info.description || 'No description available';
-//   this.bookshelf = 'select bookshelf';
-// }

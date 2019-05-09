@@ -8,37 +8,8 @@
   <title>Show</title>
 </head>
 <body>
-  <main>
-  <h1>Show Books!</h1>
-  <ul>
-    <% searchResults.forEach( (element) => { %>
-      <li>
-
-          <section>
-            <img src=" <%= element.image_url %> " alt=" <%= element.title %> picture not available">
-            <h2> Title: <%= element.title %> </h2>
-            <h3> Author: <%= element.author %></h3>
-            <h4> ISBN: <%= element.isbn %></h4>
-            <p> Description: <%= element.description %></p>
-            <button class="toggleButton" type="submit">Select this book</button>
-          </section>
-          <section>
-              <form class="hiddenForm" action="/book" method="post">
-                <!-- <input type="hidden" name="_method" value="put"> -->
-                <input type="text" name="title" value="<%= element.title %>" placeholder="<%= element.title %>">
-                
-                <input type="text" name="author" value="<%= element.author %>" placeholder="<%= element.author %>">
-                <input type="text" name="isbn" value="<%= element.isbn %>"  placeholder="<%= element.isbn %>">
-                <input type="text" name="image_url" value="<%= element.image_url %>"  placeholder="<%= element.image_url %>">
-                <textarea name="description" placeholder="<%= element.description %>" cols="30" rows="10"><%= element.description %></textarea>
-                <input type="text" name="bookshelf" placeholder="Enter bookshelf name" required>
-                <button type="submit"> Add to database</button>
-              </form>
-            </section>
-      </li>
-    <% }) %>
-  </ul>
-
+  <main id="bookSearchSection">
+      <%- include('../books/detail', {results: searchResults, button: ['Select this book', 'select']}) %>
 </main>
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
