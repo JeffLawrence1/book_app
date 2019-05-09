@@ -56,7 +56,7 @@ function Book(info) {
   this.isbn = info.industryIdentifiers[0].identifier || 'No ISBN present';
   this.image_url = image || 'https://i.imgur.com/e1yYXUU.jpg';
   this.description = info.description || 'No description available';
-  this.bookshelf = 'SciFi';
+  this.bookshelf = 'select bookshelf';
 }
 
 const urlCheck = (data) => {
