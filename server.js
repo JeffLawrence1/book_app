@@ -36,6 +36,7 @@ app.set('view engine', 'ejs');
 // Routes
 app.get('/searches/new', newSearch);
 app.post('/searches', performSearch);
+app.post('/book', addDB);
 app.get('/', loadPage);
 app.get('/error', errorPage);
 app.get('/books/:id', getBook);
@@ -105,6 +106,9 @@ function getBook(request, response){
     .catch (err => errorPage(err, response));
 }
 
+function addDB(request, response){
+  console.log(request);
+}
 function errorPage(error, response){
   response.render('pages/error', {error: 'OH nO!'});
 }
