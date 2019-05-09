@@ -1,6 +1,18 @@
 # book_app
 # Ed and Jeff
 
+#Day 3
+
+Number and name of feature: #1 Adding hidden DB change form
+
+Estimate of time needed to complete: one hour
+
+Start time: 8:20
+
+Finish time: 
+
+Actual time needed to complete: 
+
 #Day 2
 
 Number and name of feature: #1 Adding database

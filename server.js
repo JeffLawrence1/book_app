@@ -35,7 +35,7 @@ app.set('view engine', 'ejs');
 
 // Routes
 app.get('/searches/new', newSearch);
-//app.get('/searches/new', performSearch);
+app.post('/searches', performSearch);
 app.get('/', loadPage);
 app.get('/error', errorPage);
 app.get('/books/:id', getBook);
@@ -70,7 +70,7 @@ const urlCheck = (data) => {
 
 // Functions
 function newSearch(request, response){
-  response.render('pages/index');
+  response.render('pages/searches/new');
 }
 
 function performSearch(request, response){
