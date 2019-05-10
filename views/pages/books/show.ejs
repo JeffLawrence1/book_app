@@ -6,7 +6,10 @@
         <a href="/"><button>To Library</button></a>
     <%- include('./detail', {book: results}) %>
     <button class="viewBut">Update Details</button>
-    <a href="/books/<%= results.id %>"><button class="deleteBut">Delete Book</button></a>
+    <form class="deleteForm" action="/books/<%= results.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="deleteBut">Delete Book</button>
+    </form>
     <%- include('./edit', { element: results, formAction: 'Update' }) %>
     <br>
     <br>

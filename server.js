@@ -41,6 +41,7 @@ app.get('/', loadPage);
 app.get('/error', errorPage);
 app.get('/books/:id', getBook);
 app.put('/books/:id', updateBook);
+app.delete('/books/:id', deleteBook);
 
 // Error Catcher
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -133,6 +134,16 @@ function updateBook(request, response){
     .catch(err => errorPage(err, response));
 
 }
+
+function deleteBook(request, response){
+  let SQL = 'DELETE FROM books WHERE id=$1;';
+  let values = [request.params.id];
+
+  client.query(SQL, values)
+    .then(response.redirect('/'))
+    .catch(err => errorPage(err, response));
+}
+
 function errorPage(error, response){
   response.render('pages/error', {error: 'OH nO!'});
 }
