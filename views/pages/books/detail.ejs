@@ -1,6 +1,6 @@
 
-        <% results.forEach(book => { %>
-        <!-- <li class="bookItem" data-id="<%= book.id %>"> -->
+       
+        
         <section id="bookSearch" class="showBook">
             <img src=" <%= book.image_url %> " alt=" <%= book.title %> picture not available">
             <h2> Title: <%= book.title %> </h2>
@@ -8,8 +8,6 @@
             <h4> ISBN: <%= book.isbn %></h4>
             <p> Description: <%= book.description %></p>
             <p> Bookshelf: <%= book.bookshelf %></p>
-            <button class="viewBut"><%= button[0] %></button>
-            <%- include('../books/edit', { element: book }) %>
-
+            
         </section>
-        <% }) %>
+

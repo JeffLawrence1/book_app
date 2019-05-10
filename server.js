@@ -101,7 +101,7 @@ function getBook(request, response){
 
   return client.query(SQL, values)
     .then(result => {
-      response.render('pages/books/show', {results: result.rows});
+      response.render('pages/books/show', {results: result.rows[0]});
     })
     .catch (err => errorPage(err, response));
 }

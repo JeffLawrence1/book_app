@@ -1,5 +1,5 @@
 
-$('#bookSearchSection').on('click', 'button', function(event) {
+$('.viewBut').on('click', function(event) {
   event.preventDefault();
 
   let className = $(event.target).siblings('form').attr('class');

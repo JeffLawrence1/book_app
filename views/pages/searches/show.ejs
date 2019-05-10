@@ -9,7 +9,11 @@
 </head>
 <body>
   <main id="bookSearchSection">
-      <%- include('../books/detail', {results: searchResults, button: ['Select this book', 'select']}) %>
+      <% searchResults.forEach(book => { %>
+        <%- include('../books/detail', {book: book}) %>
+         <button class="viewBut">Select Book</button>
+         <%- include('../books/edit', { element: book }) %>
+      <% }) %>
 </main>
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
