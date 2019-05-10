@@ -90,7 +90,8 @@ function loadPage (request, response) {
 
   return client.query(SQL)
     //console.log(SQL)
-    .then (results => response.render('pages/index', {results: results.rows, bookCount: results.rows.length}))
+    // .then (results => console.log({result: results.rows, bookCount: results.rows.length}))
+    .then (results => response.render('pages/index', {result: results.rows, bookCount: results.rows.length}))
     .catch (err => errorPage(err, response));
 }
 

@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/styles/base.css">
-  <title>Search</title>
-</head>
+<%- include('../layout/head')%>
 <body>
   <main>
     <h1>Current Books in Database</h1>
     <h3>Book Count = <%=bookCount%></h3>
-    <%- include('./books/detail') %>
+    <% result.forEach(results => { %>
+    <%- include('./books/detail', {book: results}) %>
+    <% }) %>
   </main>
 </body>
 </html>
