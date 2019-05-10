@@ -3,6 +3,8 @@
 <%- include('../../layout/head')%>
 <body>
   <main id="bookSearchSection">
+    <h1>Book Search Results</h1>
+    <a href="/"><button>To Library</button></a>
       <% searchResults.forEach(book => { %>
         <%- include('../books/detail', {book: book}) %>
          <button class="viewBut">Select Book</button>

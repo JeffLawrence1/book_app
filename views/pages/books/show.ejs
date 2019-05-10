@@ -2,7 +2,15 @@
 <html lang="en">
 <%- include('../../layout/head')%>
 <body>
-        <a href="/">Main Page</a>
+    <h1>Book Details</h1>
+        <a href="/"><button>To Library</button></a>
     <%- include('./detail', {book: results}) %>
+    <button class="viewBut">Select Book</button>
+    <%- include('./edit', { element: results }) %>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <script src="/js/app.js"></script>
 </body>
 </html>
