@@ -3,7 +3,9 @@
 <%- include('../layout/head')%>
 <body>
   <main>
+    
     <h1>Current Books in Database</h1>
+    <a href="/searches/new"><button class="viewBut">Search Books</button></a>
     <h3>Book Count = <%=bookCount%></h3>
     <% result.forEach(results => { %>
     <%- include('./books/detail', {book: results}) %>
