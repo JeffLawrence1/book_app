@@ -6,9 +6,11 @@
     <h1>Book Search Results</h1>
     <a href="/"><button>To Library</button></a>
       <% searchResults.forEach(book => { %>
+        <section>
         <%- include('../books/detail', {book: book}) %>
          <button class="viewBut">Select Book</button>
          <%- include('../books/edit', { element: book, formAction: 'Add' }) %>
+        </section>
       <% }) %>
 </main>
 <script

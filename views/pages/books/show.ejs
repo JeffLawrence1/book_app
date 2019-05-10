@@ -5,14 +5,15 @@
     <h1>Book Details</h1>
         <a href="/"><button>To Library</button></a>
     <%- include('./detail', {book: results}) %>
-    <button class="viewBut">Select Book</button>
+    <button class="viewBut">Update Details</button>
+    <a href="/books/<%= results.id %>"><button class="deleteBut">Delete Book</button></a>
     <%- include('./edit', { element: results, formAction: 'Update' }) %>
     <br>
     <br>
     <br>
     <br>
     <br>
-    
+
     <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
