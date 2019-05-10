@@ -9,6 +9,7 @@
     <h3>Book Count = <%=bookCount%></h3>
     <% result.forEach(results => { %>
     <%- include('./books/detail', {book: results}) %>
+    <a href="/books/<%= results.id %>"><button class="viewBut">View Book Details</button></a>
     <% }) %>
   </main>
 </body>
