@@ -1,6 +1,6 @@
 
-<form class="bookView hiddenForm" action="/book" method="post">
-  <!-- <input type="hidden" name="_method" value="put"> -->
+<form class="hiddenForm" action="<%= formAction === 'Add' ? '/book' : `/books/${element.id}` %>" method="post">
+  <input type="hidden" name="_method" value="<%= formAction === 'Add' ? 'post' : 'put' %>">
   <input type="text" name="title" value="<%= element.title %>" placeholder="<%= element.title %>">
   
   <input type="text" name="author" value="<%= element.author %>" placeholder="<%= element.author %>">
@@ -8,5 +8,5 @@
   <input type="text" name="image_url" value="<%= element.image_url %>"  placeholder="<%= element.image_url %>">
   <textarea name="description" placeholder="<%= element.description %>" cols="30" rows="10"><%= element.description %></textarea>
   <input type="text" name="bookshelf" placeholder="Enter bookshelf name" required>
-  <button class="submitForm" type="submit"> Add to database</button>
+  <button class="submitForm" type="submit"> <%= formAction %> to database</button>
 </form>

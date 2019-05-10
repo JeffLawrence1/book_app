@@ -6,7 +6,13 @@
         <a href="/"><button>To Library</button></a>
     <%- include('./detail', {book: results}) %>
     <button class="viewBut">Select Book</button>
-    <%- include('./edit', { element: results }) %>
+    <%- include('./edit', { element: results, formAction: 'Update' }) %>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
     <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="

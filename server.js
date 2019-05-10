@@ -40,6 +40,7 @@ app.post('/book', addDB);
 app.get('/', loadPage);
 app.get('/error', errorPage);
 app.get('/books/:id', getBook);
+app.put('/books/:id', updateBook);
 
 // Error Catcher
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -114,12 +115,23 @@ function addDB(request, response){
 
   let SQL = 'INSERT INTO books(author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;';
   let values = [author, title, isbn, image_url, description, bookshelf];
- 
+
   return client.query(SQL, values)
     .then(results => response.redirect(`/books/${results.rows[0].id}`))
     .catch (err => errorPage(err, response));
 }
 
+function updateBook(request, response){
+  let { author, title, isbn, image_url, description, bookshelf} = request.body;
+  // console.log(request.params.id);
+  let SQL = 'UPDATE books SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
+  let values = [author, title, isbn, image_url, description, bookshelf, request.params.id];
+
+  client.query(SQL, values)
+    .then(response.redirect(`/books/${request.params.id}`))
+    .catch(err => errorPage(err, response));
+
+}
 function errorPage(error, response){
   response.render('pages/error', {error: 'OH nO!'});
 }
