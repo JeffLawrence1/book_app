@@ -97,9 +97,11 @@ function loadPage (request, response) {
     .catch (err => errorPage(err, response));
 }
 
+
 function getBook(request, response){
   let SQL = `SELECT * FROM books WHERE id=$1;`;
   //console.log(request.params);
+ 
   let values = [request.params.id];
 
   return client.query(SQL, values)

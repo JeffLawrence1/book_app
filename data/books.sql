@@ -9,3 +9,8 @@ CREATE TABLE books (
     description TEXT,
     bookshelf VARCHAR(255)
 );
+
+INSERT INTO books (author, title, isbn, image_url, description)
+VALUES ('Terry Pratchett', 'The Carpet People', '9780544284715', 'http://books.google.com/books/content?id=cVMPAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\', 'Description: In the beginning, there was nothing but endless flatness.');
+INSERT INTO books (author, title, isbn, image_url, description)
+VALUES ('Terry Pratchett', 'Pie Day', '9780544284715', 'http://books.google.com/books/content?id=cVMPAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\', 'Description: A wonderful day.');
