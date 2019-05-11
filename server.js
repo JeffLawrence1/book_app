@@ -19,9 +19,9 @@ app.use(methodOverride(function (req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
     console.log(req.body._method);
-    var method = req.body._method
-    delete req.body._method
-    return method
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
   }
 }));
 
@@ -40,6 +40,8 @@ app.post('/book', addDB);
 app.get('/', loadPage);
 app.get('/error', errorPage);
 app.get('/books/:id', getBook);
+app.put('/books/:id', updateBook);
+app.delete('/books/:id', deleteBook);
 
 // Error Catcher
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -86,30 +88,64 @@ function performSearch(request, response){
 
 function loadPage (request, response) {
   let SQL = 'SELECT * FROM books;';
-  
-  
-  return client.query(SQL) 
+
+
+  return client.query(SQL)
     //console.log(SQL)
-    .then (results => response.render('pages/index', {results: results.rows, bookCount: results.rows.length}))
+    // .then (results => console.log({result: results.rows, bookCount: results.rows.length}))
+    .then (results => response.render('pages/index', {result: results.rows, bookCount: results.rows.length}))
     .catch (err => errorPage(err, response));
 }
+
 
 function getBook(request, response){
   let SQL = `SELECT * FROM books WHERE id=$1;`;
   //console.log(request.params);
+ 
   let values = [request.params.id];
 
   return client.query(SQL, values)
     .then(result => {
-      response.render('pages/books/show', {results: result.rows});
+
+      response.render('pages/books/show', {results: result.rows[0]});
     })
     .catch (err => errorPage(err, response));
 }
 
+
 function addDB(request, response){
-  console.log(request);
+  // console.log(request);
+  let { author, title, isbn, image_url, description, bookshelf} = request.body;
+
+  let SQL = 'INSERT INTO books(author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;';
+  let values = [author, title, isbn, image_url, description, bookshelf];
+
+  return client.query(SQL, values)
+    .then(results => response.redirect(`/books/${results.rows[0].id}`))
+    .catch (err => errorPage(err, response));
 }
+
+function updateBook(request, response){
+  let { author, title, isbn, image_url, description, bookshelf} = request.body;
+  // console.log(request.params.id);
+  let SQL = 'UPDATE books SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
+  let values = [author, title, isbn, image_url, description, bookshelf, request.params.id];
+
+  client.query(SQL, values)
+    .then(response.redirect(`/books/${request.params.id}`))
+    .catch(err => errorPage(err, response));
+
+}
+
+function deleteBook(request, response){
+  let SQL = 'DELETE FROM books WHERE id=$1;';
+  let values = [request.params.id];
+
+  client.query(SQL, values)
+    .then(response.redirect('/'))
+    .catch(err => errorPage(err, response));
+}
+
 function errorPage(error, response){
   response.render('pages/error', {error: 'OH nO!'});
 }
-
