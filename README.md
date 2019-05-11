@@ -3,15 +3,35 @@
 
 #Day 3
 
+Number and name of feature: #4 Delete
+
+Estimate of time needed to complete: one hour
+
+Start time: 3:30
+
+Finish time: 4:45
+
+Actual time needed to complete: hour fifteen
+
+Number and name of feature: #3 Update
+
+Estimate of time needed to complete: one hour
+
+Start time: 11:00
+
+Finish time: 12:20
+
+Actual time needed to complete: hour twenty
+
 Number and name of feature: #2 Adding functionality to hidden form
 
 Estimate of time needed to complete: one hour
 
 Start time: 9:20
 
-Finish time: 
+Finish time: 11:00
 
-Actual time needed to complete: 
+Actual time needed to complete: hour thirty
 
 
 Number and name of feature: #1 Adding hidden DB change form
